@@ -12,9 +12,9 @@ var modernJs = {
         var dictionaryKeys = Object.keys(dictionary);
 
         var upperKeys = dictionaryKeys.map(function (key, i, arr)
-        {
-            return key.toUpperCase();
-        });
+                                           {
+                                               return key.toUpperCase();
+                                           });
 
         return upperKeys.join(' ');
     },
@@ -31,8 +31,10 @@ var modernJs = {
 
         var studentsArray = [];
 
-        for (var student in this.classroom) {
-            if (this.classroom.hasOwnProperty(student)) {
+        for (var student in this.classroom)
+        {
+            if (this.classroom.hasOwnProperty(student))
+            {
                 studentsArray.push(this.classroom[student])
             }
         }
@@ -46,9 +48,9 @@ var modernJs = {
 
         var that = this;
         var studentsArray = classRoomKeys.map(function (key)
-        {
-            return that.classroom[key];
-        });
+                                              {
+                                                  return that.classroom[key];
+                                              });
 
 
         return studentsArray.join(' ; ');
@@ -58,11 +60,12 @@ var modernJs = {
     {
         let someStr = 'Hi';
 
-        if (someStr === 'Hi') {
-            const someStr = 'Bye';
+        if (someStr === 'Hi')
+        {
+            let someStr = 'Bye';
         }
 
-        someStr = 'sth else'
+        someStr = 'sth else';
 
         return someStr;
 
@@ -142,7 +145,8 @@ var modernJs = {
             mainInstrument: 'drum'
         };
 
-        function showADance({name, tempo, origin}) {
+        function showADance({name, tempo, origin})
+        {
             return `${name} is a ${tempo} dance, that comes from ${origin}, and is popular in clubs today`;
         }
 
@@ -151,7 +155,8 @@ var modernJs = {
     },
 
     generators() {
-        function* directions() {
+        function* directions()
+        {
             yield 'North';
             yield 'West';
             yield 'South';
@@ -168,8 +173,10 @@ var modernJs = {
     },
 
     generators2() {
-        function* eachItem(arr) {
-            for(var i = 0; i <arr.length; i++) {
+        function* eachItem(arr)
+        {
+            for (var i = 0; i < arr.length; i++)
+            {
                 yield arr[i];
             }
         }
@@ -177,15 +184,159 @@ var modernJs = {
         var wyliczanka = eachItem(['ene', 'duo', 'like', 'fake']);
 
         var wyliczam = setInterval(function ()
+                                   {
+                                       var haslo = wyliczanka.next();
+                                       if (haslo.done)
+                                       {
+                                           clearInterval(wyliczam);
+                                           console.log('Skonczylem!');
+                                       }
+                                       else
+                                       {
+                                           console.log(haslo.value);
+                                       }
+                                   }, 600);
+    },
+
+    wyjmuje() {
+        var rectangle = {
+            x: 5,
+            y: 4
+        };
+
+        function cubeArea({x, y, z = 10})
         {
-            var haslo = wyliczanka.next();
-            if(haslo.done) {
-                clearInterval(wyliczam);
-                console.log('Skonczylem!');
-            } else {
-                console.log(haslo.value);
+            return x * y * z;
+        }
+
+        return cubeArea(rectangle);
+    },
+
+    reszta() {
+        function goShopping(prefix, ...args)
+        {
+            var list = '<ul>';
+
+            args.forEach(
+                elem =>
+                {
+                    list += `<li>${prefix}: ${elem.item}</li>`;
+                });
+
+            list += '</ul>';
+
+            return list;
+        }
+
+        return goShopping('kup', {item: 'bulka'}, {item: 'salata'}, {item: 'soczewica'});
+    },
+
+    spread() {
+        var details = ['now', 'run', 'in company'];
+
+        function activity(when, what, withWho)
+        {
+            return `${when} I am going to ${what} ${withWho}`;
+        }
+
+        return activity(...details);
+    },
+
+    spreadOld() {
+        var details = ['now', 'run', 'in company'];
+
+        function activity(when, what, withWho)
+        {
+            return `${when} I am going to ${what} ${withWho}`;
+        }
+
+        // debugger;
+        return activity.apply(this, details);
+
+    },
+
+    classes() {
+        class Tree {
+            constructor(name, height, bark, leafColor)
+            {
+                this.name = name;
+                this.height = height;
+                this.bark = bark;
+                this.leafColor = leafColor;
             }
-        }, 600);
+
+            grow()
+            {
+                this.height += 1;
+            }
+
+            florish()
+            {
+                if (this.leafColor === 'green')
+                    this.leafColor = 'greener:';
+                else
+                    this.leafColor = 'green';
+            }
+
+        }
+
+        class Country {
+
+            constructor(name, continent)
+            {
+                this.name = name;
+                this.continent = continent;
+            }
+
+            describeYourself(options)
+            {
+                switch (options.speed)
+                {
+                    case 'fast':
+                        return `I am ${this.name} from ${this.continent}`;
+                    // break;
+
+                    case 'slow':
+                        return `I am ${this.name}, a very nice place to go in ${this.continent}`;
+                    // break;
+
+                    default:
+                        return `I am ${this.name}`;
+                    // break;
+
+                }
+
+            }
+
+        }
+
+
+        // debugger;
+
+        let maple = new Tree('acer', '5', 'smoothly ribbed');
+
+        let vietnam = new Country('Vietnam', 'Asia');
+
+        console.log(Object.keys(maple));
+        console.log(vietnam.describeYourself({
+
+                                             }));
+
+
+    },
+
+    enhancedKeys() {
+        var category = 'players';
+
+        var obj = {
+            'name': 'Zito',
+            [`
+                        ${category}
+                        _id`]: 23
+        };
+
+
+        return Object.keys(obj).join('<br>');
     }
 
 
@@ -196,5 +347,5 @@ modernJs.generators2();
 modernJs.generators();
 modernJs.es6Objects.cat.miau(5);
 
-$('#testdiv').html(modernJs.destructuringObjectsForArgs());
+$('#testdiv').html(modernJs.classes());
 

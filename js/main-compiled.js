@@ -1,5 +1,11 @@
 'use strict';
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 var modernJs = {
 
     objectKeysMethod: function objectKeysMethod() {
@@ -224,6 +230,136 @@ var modernJs = {
                 console.log(haslo.value);
             }
         }, 600);
+    },
+    wyjmuje: function wyjmuje() {
+        var rectangle = {
+            x: 5,
+            y: 4
+        };
+
+        function cubeArea(_ref3) {
+            var x = _ref3.x,
+                y = _ref3.y,
+                _ref3$z = _ref3.z,
+                z = _ref3$z === undefined ? 10 : _ref3$z;
+
+            return x * y * z;
+        }
+
+        return cubeArea(rectangle);
+    },
+    reszta: function reszta() {
+        function goShopping(prefix) {
+            var list = '<ul>';
+
+            for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+                args[_key - 1] = arguments[_key];
+            }
+
+            args.forEach(function (elem) {
+                list += '<li>' + prefix + ': ' + elem.item + '</li>';
+            });
+
+            list += '</ul>';
+
+            return list;
+        }
+
+        return goShopping('kup', { item: 'bulka' }, { item: 'salata' }, { item: 'soczewica' });
+    },
+    spread: function spread() {
+        var details = ['now', 'run', 'in company'];
+
+        function activity(when, what, withWho) {
+            return when + ' I am going to ' + what + ' ' + withWho;
+        }
+
+        return activity.apply(undefined, details);
+    },
+    spreadOld: function spreadOld() {
+        var details = ['now', 'run', 'in company'];
+
+        function activity(when, what, withWho) {
+            return when + ' I am going to ' + what + ' ' + withWho;
+        }
+
+        // debugger;
+        return activity.apply(this, details);
+    },
+    classes: function classes() {
+        var Tree = function () {
+            function Tree(name, height, bark, leafColor) {
+                _classCallCheck(this, Tree);
+
+                this.name = name;
+                this.height = height;
+                this.bark = bark;
+                this.leafColor = leafColor;
+            }
+
+            _createClass(Tree, [{
+                key: 'grow',
+                value: function grow() {
+                    this.height += 1;
+                }
+            }, {
+                key: 'florish',
+                value: function florish() {
+                    if (this.leafColor === 'green') this.leafColor = 'greener:';else this.leafColor = 'green';
+                }
+            }]);
+
+            return Tree;
+        }();
+
+        var Country = function () {
+            function Country(name, continent) {
+                _classCallCheck(this, Country);
+
+                this.name = name;
+                this.continent = continent;
+            }
+
+            _createClass(Country, [{
+                key: 'describeYourself',
+                value: function describeYourself(options) {
+                    switch (options.speed) {
+                        case 'fast':
+                            return 'I am ' + this.name + ' from ' + this.continent;
+                        // break;
+
+                        case 'slow':
+                            return 'I am ' + this.name + ', a very nice place to go in ' + this.continent;
+                        // break;
+
+                        default:
+                            return 'I am ' + this.name;
+                        // break;
+
+                    }
+                }
+            }]);
+
+            return Country;
+        }();
+
+        // debugger;
+
+        var maple = new Tree('acer', '5', 'smoothly ribbed');
+
+        var vietnam = new Country('Vietnam', 'Asia');
+
+        console.log(Object.keys(maple));
+        console.log(vietnam.describeYourself({}));
+    },
+    enhancedKeys: function enhancedKeys() {
+        var category = 'players';
+
+        var obj = _defineProperty({
+            'name': 'Zito'
+        }, '\n                        ' + category + '\n                        _id', 23);
+
+        return Object.keys(obj).join('<br>');
     }
 };
 
@@ -232,6 +368,6 @@ modernJs.generators2();
 modernJs.generators();
 modernJs.es6Objects.cat.miau(5);
 
-$('#testdiv').html(modernJs.destructuringObjectsForArgs());
+$('#testdiv').html(modernJs.classes());
 
 //# sourceMappingURL=main-compiled.js.map
