@@ -1,10 +1,17 @@
-var modernJs = {
+import {sum} from './modules/calculations'
+
+console.log(sum(1,2,3));
+
+
+export var modernJs = {
+
+
 
 
     objectKeysMethod: function ()
     {
         var dictionary = {
-            'smart': 'good looking',
+            'ogaO': 'good looking',
             'hype': 'buzz',
             'azonto': 'type of dance'
         };
@@ -310,6 +317,30 @@ var modernJs = {
 
         }
 
+        class Plant {
+            constructor(name, genus, existence = true, heightCm = 0 ) {
+                this.name = name;
+                this.genus = genus;
+                this.existence = existence;
+                this.heightCm = heightCm;
+            }
+
+            grow() {
+                this.height += 1;
+            }
+
+
+        }
+
+        class Shrub extends Plant {
+
+            constructor(name, existence, heightCm) {
+                super(name, 'Shrub', existence, heightCm);
+            }
+        }
+
+        var euonymus = new Shrub('Euonymus');
+
 
         // debugger;
 
@@ -317,12 +348,7 @@ var modernJs = {
 
         let vietnam = new Country('Vietnam', 'Asia');
 
-        console.log(Object.keys(maple));
-        console.log(vietnam.describeYourself({
-
-                                             }));
-
-
+        return `${maple.name} has a ${maple.bark} bark and a ${maple.leafColor} leaf color`;
     },
 
     enhancedKeys() {
@@ -342,10 +368,7 @@ var modernJs = {
 
 };
 
-modernJs.generators2();
 
-modernJs.generators();
-modernJs.es6Objects.cat.miau(5);
 
-$('#testdiv').html(modernJs.classes());
+
 

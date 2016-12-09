@@ -1,12 +1,25 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.modernJs = undefined;
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _calculations = require('modules/calculations.js');
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var modernJs = {
+console.log((0, _calculations.sum)(1, 2, 3));
+
+var modernJs = exports.modernJs = {
 
     objectKeysMethod: function objectKeysMethod() {
         var dictionary = {
@@ -343,6 +356,43 @@ var modernJs = {
             return Country;
         }();
 
+        var Plant = function () {
+            function Plant(name, genus) {
+                var existence = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+                var heightCm = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+
+                _classCallCheck(this, Plant);
+
+                this.name = name;
+                this.genus = genus;
+                this.existence = existence;
+                this.heightCm = heightCm;
+            }
+
+            _createClass(Plant, [{
+                key: 'grow',
+                value: function grow() {
+                    this.height += 1;
+                }
+            }]);
+
+            return Plant;
+        }();
+
+        var Shrub = function (_Plant) {
+            _inherits(Shrub, _Plant);
+
+            function Shrub(name, existence, heightCm) {
+                _classCallCheck(this, Shrub);
+
+                return _possibleConstructorReturn(this, (Shrub.__proto__ || Object.getPrototypeOf(Shrub)).call(this, name, 'Shrub', existence, heightCm));
+            }
+
+            return Shrub;
+        }(Plant);
+
+        var euonymus = new Shrub('Euonymus');
+
         // debugger;
 
         var maple = new Tree('acer', '5', 'smoothly ribbed');
@@ -350,7 +400,8 @@ var modernJs = {
         var vietnam = new Country('Vietnam', 'Asia');
 
         console.log(Object.keys(maple));
-        console.log(vietnam.describeYourself({}));
+
+        console.log(euonymus);
     },
     enhancedKeys: function enhancedKeys() {
         var category = 'players';
@@ -369,5 +420,19 @@ modernJs.generators();
 modernJs.es6Objects.cat.miau(5);
 
 $('#testdiv').html(modernJs.classes());
+
+var color = 'red';
+var shape = 'round';
+
+var orange = { color: color, shape: shape };
+console.log(orange);
+
+var apple = {
+    color: 'green',
+    shape: 'oval'
+};
+
+var basket = { orange: orange, apple: apple };
+console.log(basket);
 
 //# sourceMappingURL=main-compiled.js.map
